@@ -5,8 +5,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/YourUser/YourRepo.git',
-                    credentialsId: 'github-credentials'
+                    url: 'https://github.com/ommi1987/uptime_kuma_link_onboaring.git',
+                    credentialsId: 'uptime-kuma'
             }
         }
     }
