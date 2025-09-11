@@ -19,7 +19,7 @@ with UptimeKumaApi(URL) as api:
     isp_ip.append(i.get("hostname"))
   if name in isp_name or hostname in isp_ip:
     print("ISP is already present with same name or with same IP. Please check...")
-    break
+    sys.exit(0)
   notifications = api.get_notifications()
   # Find the one you want (by name or other property)
   webhook_name = "Uptime Kuma ISP Alert"  # existing webhook name
