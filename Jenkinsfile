@@ -28,7 +28,7 @@ pipeline {
                                           usernameVariable: 'GITHUB_USER',
                                           passwordVariable: 'GITHUB_PASS')]) {
             sh '''
-                source venv/bin/activate
+                . venv/bin/activate
                 python test2.py "$GITHUB_USER" "$GITHUB_PASS"
             '''
                 }
