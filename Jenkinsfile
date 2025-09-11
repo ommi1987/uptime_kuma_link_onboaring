@@ -22,16 +22,17 @@ pipeline {
         }
     }
 
-        stage('Run Python Script') {
-            steps {
-                sh '''
-                # Pass Jenkins credentials as environment vars to Python
-                export GITHUB_USER=$GIT_CRED_USR
-                export GITHUB_PASS=$GIT_CRED_PSW
-                python3 test2.py
-                '''
+    stage('Run Python Script') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'ef4fcb76-64f0-4cf0-af29-16e94c03fcd4',
+                                          usernameVariable: 'GITHUB_USER',
+                                          passwordVariable: 'GITHUB_PASS')]) {
+            sh '''
+                source venv/bin/activate
+                python test2.py "$GITHUB_USER" "$GITHUB_PASS"
+            '''
+                }
             }
         }
-
     }
 }
