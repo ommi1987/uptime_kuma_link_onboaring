@@ -24,13 +24,14 @@ pipeline {
 
         stage('Run Python Script') {
     steps {
-        withCredentials([usernamePassword(credentialsId: 'github-creds',
+        withCredentials([usernamePassword(credentialsId: GIT_CRED,
                                           usernameVariable: 'GITHUB_USER',
                                           passwordVariable: 'GITHUB_PASS')]) {
             sh '''
                 source venv/bin/activate
                 python test2.py
             '''
+                }
             }
         }
     }
