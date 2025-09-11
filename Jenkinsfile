@@ -6,8 +6,8 @@ pipeline {
     }
 
     parameters {
-        string(name: 'ISP_NAME', defaultValue: 'Format: WH_NAME-LOCATION-ISP_NAME-TYPE-BW', description: 'EX: 7 STAR-Mumbai-Hathway-BB-100')
-        string(name: 'ISP_PUBLIC_IP', defaultValue: 'Provide IP Address', description: 'ENTER ISP PUBLIC IP')
+        string(name: 'ISP_NAME', defaultValue: '', description: 'Mandatory! Enter in format: WH_NAME-LOCATION-ISP_NAME-TYPE-BW (e.g. 7STAR-Mumbai-Hathway-BB-100)')
+        string(name: 'ISP_PUBLIC_IP', defaultValue: '', description: 'Mandatory! Enter ISP Public IP (e.g. 1.2.3.4)')
     }
 
     stages {
