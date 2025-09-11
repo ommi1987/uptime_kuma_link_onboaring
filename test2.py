@@ -8,10 +8,18 @@ github_pass = os.getenv("GITHUB_PASS")
 
 name = sys.argv[1]
 hostname = sys.argv[2]
+isp_name=[]
+isp_ip=[]
 
 URL='http://192.168.101.13:3001//dashboard'
 with UptimeKumaApi(URL) as api:
   api.login(github_user, github_pass)
+  for i in api.get_monitors():
+    isp_name.append(i.get("name"))
+    isp_ip.append(i.get("hostname"))
+  if name in isp_name or hostname in isp_ip:
+    print("ISP is already present with same name or with same IP. Please check...")
+    break
   notifications = api.get_notifications()
   # Find the one you want (by name or other property)
   webhook_name = "Uptime Kuma ISP Alert"  # existing webhook name
