@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Python Script') {
     steps {
-        withCredentials([usernamePassword(credentialsId: GIT_CRED,
+        withCredentials([usernamePassword(
                                           usernameVariable: 'GITHUB_USER',
                                           passwordVariable: 'GITHUB_PASS')]) {
             sh '''
