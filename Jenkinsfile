@@ -1,21 +1,15 @@
 pipeline {
     agent any
-
     parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to checkout')
-        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Deployment environment')
+        string(name: 'NAME', defaultValue: 'Omprakash', description: 'Enter name')
+        string(name: 'AGE', defaultValue: '25', description: 'Enter age')
     }
-
     stages {
-        stage('Checkout') {
+        stage('Run Python') {
             steps {
-                git branch: "${params.BRANCH}", url: 'https://github.com/your-org/your-repo.git'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo "Deploying to ${params.ENVIRONMENT}"
+                sh """
+                python3 test1.py ${params.NAME} ${params.AGE}
+                """
             }
         }
     }
