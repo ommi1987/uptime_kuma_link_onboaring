@@ -11,6 +11,18 @@ pipeline {
     }
 
     stages {
+
+        stage('Validate Params') {
+    steps {
+        script {
+            def ispPattern = /^[A-Za-z0-9]+-[A-Za-z]+-[A-Za-z]+-(BB|ILL)-\d+$/
+            if (!(params.ISP_NAME ==~ ispPattern)) {
+                error("❌ Invalid ISP_NAME format! Use: WH_NAME-LOCATION-ISP_NAME-(BB|ILL)-BW")
+                    }
+                }
+            }
+        }
+        
         stage('Install Dependencies') {
     steps {
         sh '''
