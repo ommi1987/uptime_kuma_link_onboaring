@@ -20,4 +20,4 @@ with UptimeKumaApi(URL) as api:
     if n["name"] == webhook_name:
         notif_id = n["id"]
         break    
-  api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=notif_id)
+  api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=[notif_id])
