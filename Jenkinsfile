@@ -27,10 +27,14 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'ef4fcb76-64f0-4cf0-af29-16e94c03fcd4',
                                           usernameVariable: 'GITHUB_USER',
                                           passwordVariable: 'GITHUB_PASS')]) {
-            sh '''
+            sh """
                 . venv/bin/activate
-                python test2.py 
-            '''
+                python test2.py \
+                    --isp-name "${ISP_NAME}" \
+                    --isp-ip "${ISP_PUBLIC_IP}" \
+                    --github-user "${GITHUB_USER}" \
+                    --github-pass "${GITHUB_PASS}"
+            """
                 }
             }
         }
