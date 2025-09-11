@@ -31,9 +31,9 @@ pipeline {
                 source venv/bin/activate
                 python test2.py
             '''
+            }
         }
     }
 }
-
 
         
