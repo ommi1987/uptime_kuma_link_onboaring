@@ -6,24 +6,13 @@ pipeline {
     }
 
     parameters {
-        string(name: 'ISP_NAME', defaultValue: 'WH_NAME-LOCATION-ISP_NAME-TYPE-BW', description: 'EX: 7 STAR-Mumbai-Hathway-BB-100')
-        string(name: 'ISP_PUBLIC_IP', defaultValue: 'NONE', description: 'ENTER ISP PUBLIC IP')
+        string(name: 'ISP_NAME', defaultValue: 'Provide ISP Name in "WH_NAME-LOCATION-ISP_NAME-TYPE-BW" format', description: 'EX: 7 STAR-Mumbai-Hathway-BB-100')
+        string(name: 'ISP_PUBLIC_IP', defaultValue: 'Provide IP Address', description: 'ENTER ISP PUBLIC IP')
     }
 
     stages {
-
-        stage('Validate Params') {
-    steps {
-        script {
-            def ispPattern = /^[A-Za-z0-9]+-[A-Za-z]+-[A-Za-z]+-(BB|ILL)-\d+$/
-            if (!(params.ISP_NAME ==~ ispPattern)) {
-                error("❌ Invalid ISP_NAME format! Use: WH_NAME-LOCATION-ISP_NAME-(BB|ILL)-BW")
-                    }
-                }
-            }
-        }
         
-        stage('Install Dependencies') {
+    stage('Install Dependencies') {
     steps {
         sh '''
         python3 -m venv venv
