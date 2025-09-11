@@ -42,6 +42,6 @@ with UptimeKumaApi(URL) as api:
         notif_id = n["id"]
         break    
       
-  api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=[notif_id])
+  api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=[notif_id])  
   
-api.logout()
+  api.logout()
