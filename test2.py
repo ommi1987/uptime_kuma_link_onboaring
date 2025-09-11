@@ -43,5 +43,6 @@ with UptimeKumaApi(URL) as api:
         break    
       
   api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=[notif_id])  
+  print(f"ISP added successfully with the name: {name} and IP: {hostname}..!")
   
   api.logout()
