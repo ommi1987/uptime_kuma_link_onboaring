@@ -21,12 +21,16 @@ with UptimeKumaApi(URL) as api:
     isp_name.append(i.get("name"))
     isp_ip.append(i.get("hostname"))
     
+  if name in isp_name and hostname in isp_ip:
+    print(f"ISP is already present with the same name: {name} and same IP: {hostname}..!")
+    sys.exit(0)
+    
   if name in isp_name:
-    print(f"ISP is already present with the same name: {name} ...")
+    print(f"ISP is already present with the same name: {name} ..!")
     sys.exit(0)
     
   if hostname in isp_ip:
-    print(f"ISP is already present with the same IP: {hostname} ...")
+    print(f"ISP is already present with the same IP: {hostname} ..!")
     sys.exit(0)
     
   notifications = api.get_notifications()
