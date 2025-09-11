@@ -12,14 +12,23 @@ isp_name=[]
 isp_ip=[]
 
 URL='http://192.168.101.13:3001//dashboard'
+
 with UptimeKumaApi(URL) as api:
+  
   api.login(github_user, github_pass)
+  
   for i in api.get_monitors():
     isp_name.append(i.get("name"))
     isp_ip.append(i.get("hostname"))
-  if name in isp_name or hostname in isp_ip:
-    print("ISP is already present with same name or with same IP. Please check...")
+    
+  if name in isp_name:
+    print(f"ISP is already present with the same name: {name} ...")
     sys.exit(0)
+    
+  if hostname in isp_ip:
+    print(f"ISP is already present with the same IP: {hostname} ...")
+    sys.exit(0)
+    
   notifications = api.get_notifications()
   # Find the one you want (by name or other property)
   webhook_name = "Uptime Kuma ISP Alert"  # existing webhook name
@@ -28,4 +37,7 @@ with UptimeKumaApi(URL) as api:
     if n["name"] == webhook_name:
         notif_id = n["id"]
         break    
+      
   api.add_monitor(type='ping', name=name, hostname=hostname, notificationIDList=[notif_id])
+  
+api.logout()
