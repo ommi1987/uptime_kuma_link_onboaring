@@ -29,11 +29,8 @@ pipeline {
                                           passwordVariable: 'GITHUB_PASS')]) {
             sh """
                 . venv/bin/activate
-                python test2.py \
-                    --isp-name "${ISP_NAME}" \
-                    --isp-ip "${ISP_PUBLIC_IP}" \
-                    --github-user "${GITHUB_USER}" \
-                    --github-pass "${GITHUB_PASS}"
+                python test2.py "${ISP_NAME}" "${ISP_PUBLIC_IP}" 
+                    
             """
                 }
             }
